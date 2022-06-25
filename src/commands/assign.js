@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const members = require("../../members.json");
 const { put } = require("../lib/fetch");
 const { read, write, drop } = require("../../card-list.js");
+const { spteleId } = require("../../discord.config.json");
 require("dotenv").config();
 
 function range(num) {
@@ -76,7 +77,7 @@ module.exports = {
 					" to the card. Complete it RIGHT NOW!"
 			);
 		} else {
-			await interaction.reply("Error! Please try again later, or carry out the action manually. <@683835438091599904> please check server logs.");
+			await interaction.reply(`Error! Please try again later, or carry out the action manually. <@${spteleId}> please check server logs.`);
 		}
 	},
 };

@@ -5,7 +5,7 @@ const { get } = require("./lib/fetch.js");
 const fs = require("node:fs");
 const path = require("node:path");
 const { read, write } = require("../card-list");
-const { channelToSendTo } = require("../discord.config.json");
+const { channelToSendTo, spteleId } = require("../discord.config.json");
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] }); //create new client
 
@@ -29,10 +29,9 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-process.on('unhandledRejection', error => {
-	console.error('Unhandled promise rejection:', error);
+process.on("unhandledRejection", (error) => {
+	console.error("Unhandled promise rejection:", error);
 });
-
 
 // The main timer driver
 setInterval(async () => {
@@ -49,8 +48,7 @@ setInterval(async () => {
 				if (descIsUrgent && descIsUrgent === "<[%Yes%]>") {
 					console.log(write(card.id)); // Ensure I don't spam ping
 
-					const channel =
-						client.channels.cache.get(channelToSendTo);
+					const channel = client.channels.cache.get(channelToSendTo);
 					const urgentEmbed = new MessageEmbed()
 						.setColor("RED")
 						.setTitle("Urgent Article Sent!")
@@ -69,21 +67,20 @@ setInterval(async () => {
 						)
 						.addField(
 							"This Card's ID that you must reference by is",
-							read().length-1 + "",
+							read().length - 1 + "",
 							false
 						)
 						.setFooter({
-							text: "Created by Gautam Khajuria for Gen Z: We Are The Future",
+							text: `Created by Gautam Khajuria (<@${spteleId}>) for Gen Z: We Are The Future`,
 						});
 
 					channel.send("Ping: " /* + TODO: Ping */);
 					channel.send({ embeds: [urgentEmbed] });
-
 				}
 			}
 		});
 	} catch (e) {
-		const channel = await client.users.fetch("683835438091599904"); // Sptele id
+		const channel = await client.users.fetch(spteleId); // Sptele id
 		channel.send("Hey, I detected an error. Check it out:");
 		channel.send(e.message);
 	}

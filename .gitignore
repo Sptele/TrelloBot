@@ -2,3 +2,12 @@
 
 .env*
 discord.config.json
+members.json
+cards.json
+
+## Node modules
+/node_modules
+
+## Editor config
+.prettierrc
+/.vscode
