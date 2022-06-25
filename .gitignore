@@ -5,7 +5,7 @@ discord.config.json
 members.json
 cards.json
 
-## Node modules
+## Node Modules
 /node_modules
 
 ## Editor config
