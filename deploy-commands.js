@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v9");
+const { Routes } = require("discord-api-types/v10");
 const { clientId } = require("./discord.config.json");
 require("dotenv").config();
 const fs = require('node:fs');
@@ -16,7 +16,7 @@ for (const file of commandFiles) {
 	commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: "9" }).setToken(process.env.CLIENT_TOKEN);
+const rest = new REST({ version: "10" }).setToken(process.env.CLIENT_TOKEN);
 
 (async () => {
 	try {

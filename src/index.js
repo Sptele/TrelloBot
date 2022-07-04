@@ -5,7 +5,7 @@ const { get } = require("./lib/fetch.js");
 const fs = require("node:fs");
 const path = require("node:path");
 const { read, write } = require("../card-list");
-const { channelToSendTo, spteleId } = require("../discord.config.json");
+const { channelToSendTo, spteleId, webDevId } = require("../discord.config.json");
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] }); //create new client
 
@@ -74,7 +74,7 @@ setInterval(async () => {
 							text: `Created by Gautam Khajuria (<@${spteleId}>) for Gen Z: We Are The Future`,
 						});
 
-					channel.send("Ping: " /* + TODO: Ping */);
+					channel.send(`<@&${webDevId}}`);
 					channel.send({ embeds: [urgentEmbed] });
 				}
 			}
