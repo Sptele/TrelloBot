@@ -61,7 +61,7 @@ setInterval(async () => {
 							new Date(
 								new Date(
 									new Date().setHours(0, 0, 0, 0)
-								).getTime() + 259200000 // One day in MS
+								).getTime() + 259200000 // Three days in MS
 							).toUTCString(),
 							false // Inline
 						)
@@ -74,7 +74,7 @@ setInterval(async () => {
 							text: `Created by Gautam Khajuria (<@${spteleId}>) for Gen Z: We Are The Future`,
 						});
 
-					channel.send(`<@&${webDevId}}`);
+					channel.send(`<@&${webDevId}>`);
 					channel.send({ embeds: [urgentEmbed] });
 				}
 			}
